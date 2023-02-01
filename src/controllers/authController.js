@@ -2,9 +2,10 @@ require('dotenv').config()
 const jwt = require('jsonwebtoken')
 
 // dotenv
-const key = process.env.JWT_SECRET
-const AUTHUSER = process.env.AUTH_USER
-const AUTHPASS = process.env.AUTH_PASS
+const key = process.env.JWT_SECRET || 'outrakey'
+
+const AUTHUSER = process.env.AUTH_USER || 'letscode'
+const AUTHPASS = process.env.AUTH_PASS || 'lets@123'
 
 const authController = () => {
 
