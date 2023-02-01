@@ -61,7 +61,7 @@ const cardController = () => {
                 console.log(error);
             }
         } else {
-            return res.status(400).json().json({ message: 'Todos os campos são obridatórios' })
+            return res.status(400).json({ message: 'Todos os campos são obridatórios' })
         }
 
         return res.status(404).json({ message: 'Id inválido' })
