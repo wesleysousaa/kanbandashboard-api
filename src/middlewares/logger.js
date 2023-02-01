@@ -7,8 +7,8 @@ const logger = async (req, res) => {
     const formatedData = `${data.toLocaleDateString()} ${data.toTimeString().split(' ')[0]}`
 
     console.log(`${formatedData} - Card ${card.id} - ${card.titulo} - ${method === "DELETE" ? "Removido" : "Editado"}`)
-    
-    return res.status(200).json({ cards:  req.cards})
+
+    res.status(200).json({ cards: req.cards })
 }
 
 module.exports = logger
