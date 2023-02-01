@@ -4,6 +4,9 @@ const app = express()
 const db = require('./db/config')
 const port = process.env.PORT
 const routes = require('./routes/routes')
+const cors = require('cors')
+
+app.use(cors())
 
 app.use(express.urlencoded({
     extended: true
@@ -12,6 +15,7 @@ app.use(express.urlencoded({
 app.use(express.json())
 
 app.use(routes)
+
 
 try {
     app.connect(db)

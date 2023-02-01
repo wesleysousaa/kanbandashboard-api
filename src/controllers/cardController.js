@@ -49,13 +49,16 @@ const cardController = () => {
         const { titulo, conteudo, lista } = req.body
 
         try {
-            await cardModel.updateOne({ _id: id }, { titulo, conteudo, lista })
-            req.cards = await cardModel.find()
-            req.card = await cardModel.findOne({ _id: id })
-            next()
+            const { modifiedCount } = await cardModel.updateOne({ _id: id }, { titulo, conteudo, lista })
+            if (modifiedCount > 0) {
+                req.cards = await cardModel.find()
+                req.card = await cardModel.findOne({ _id: id })
+                next()
+            }
         } catch (error) {
-            return res.status(404).json({ message: error })
+            console.log(error);
         }
+        return res.status(404).json({ message: 'Id não encontrado' })
     }
 
     return {
