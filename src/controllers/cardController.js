@@ -49,17 +49,21 @@ const cardController = () => {
     const update = async (req, res, next) => {
         const { id } = req.params
         const { titulo, conteudo, lista } = req.body
+        if (titulo.trim().length > 0 && conteudo.trim().length > 0 && lista.trim().length > 0) {
+            try {
+                await cardModel.updateOne({ _id: id }, { titulo, conteudo, lista })
 
-        try {
-            await cardModel.updateOne({ _id: id }, { titulo, conteudo, lista })
+                req.cards = await cardModel.find()
+                req.card = await cardModel.findOne({ _id: id })
+                return next()
 
-            req.cards = await cardModel.find()
-            req.card = await cardModel.findOne({ _id: id })
-            return next()
-
-        } catch (error) {
-            console.log(error);
+            } catch (error) {
+                console.log(error);
+            }
+        } else {
+            return res.status.json(400).json({ message: 'Todos os campos são obridatórios' })
         }
+
         return res.status(404).json({ message: 'Id inválido' })
     }
 
