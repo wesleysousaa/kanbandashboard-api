@@ -16,11 +16,13 @@ const cardController = () => {
         const { titulo, conteudo, lista } = req.body
 
         if (titulo && conteudo && lista) {
-            try {
-                const response = await cardModel.create({ titulo, conteudo, lista })
-                return res.status(200).json(response)
-            } catch (error) {
-                return res.status(400).json({ message: error })
+            if (titulo.trim().length > 0 && conteudo.trim().length > 0 && lista.trim().length > 0) {
+                try {
+                    const response = await cardModel.create({ titulo, conteudo, lista })
+                    return res.status(200).json(response)
+                } catch (error) {
+                    return res.status(400).json({ message: error })
+                }
             }
         }
         return res.status(400).json({ message: 'Todos os campos são obrigatórios' })
