@@ -23,5 +23,7 @@ existem duas variáveis que preciso passar para vocês, para que tenham acesso a
 
 > AUTH_PASS (corresponde a senha)
 
+> JWT_SECRET (ilovejs)
+
 ## Considerações finais
 Espero que gostem da API!
